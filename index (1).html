@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine 💖</title>
+<style>
+*{box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ff6a88,#ff99ac)}
+.card{background:white;padding:30px;border-radius:20px;width:90%;max-width:360px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #ccc;margin:12px 0;font-size:16px}
+button{padding:12px 22px;border:none;border-radius:25px;font-size:16px;cursor:pointer}
+#yesBtn{background:#ff4d6d;color:white}
+#noBtn{background:#ddd;color:#444;position:relative}
+.hidden{display:none}
+#gif{width:100%;border-radius:12px;margin-top:15px}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Be My Valentine ❤️</h2>
+<div id="step1">
+<input id="nameInput" placeholder="Enter their name" />
+<button id="yesBtn" onclick="start()">Continue</button>
+</div>
+<div id="step2" class="hidden">
+<h3 id="question"></h3>
+<div style="margin-top:20px">
+<button id="yesBtn" onclick="accept()">Yes 💖</button>
+<button id="noBtn">No 🙈</button>
+</div>
+</div>
+<div id="step3" class="hidden">
+<h2>Yay!!! 😍</h2>
+<p id="finalMsg"></p>
+<img id="gif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+</div>
+</div>
+<script>
+let name="";
+const noBtn=document.getElementById("noBtn");
+function start(){
+ name=document.getElementById('nameInput').value.trim();
+ if(!name){alert('Enter a name!');return;}
+ document.getElementById('step1').classList.add('hidden');
+ document.getElementById('step2').classList.remove('hidden');
+ document.getElementById('question').innerText=name+', will you be my Valentine? 💘';
+}
+function accept(){
+ document.getElementById('step2').classList.add('hidden');
+ document.getElementById('step3').classList.remove('hidden');
+ document.getElementById('finalMsg').innerText='You just made my heart very happy, '+name+' 💕';
+}
+function moveNo(){
+ const x=Math.random()*200-100;
+ const y=Math.random()*200-100;
+ noBtn.style.transform=`translate(${x}px, ${y}px)`;
+}
+noBtn.addEventListener('mouseover',moveNo);
+noBtn.addEventListener('touchstart',moveNo);
+</script>
+</body>
+</html>
